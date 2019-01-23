@@ -1,0 +1,22 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "cn.codeyang.auth.config.AuthProperties",
+      "name": "auth",
+      "type": "cn.codeyang.auth.config.AuthProperties"
+    },
+    {
+      "sourceType": "cn.codeyang.auth.config.AuthProperties",
+      "name": "auth.web-client-configuration",
+      "type": "cn.codeyang.auth.config.AuthProperties$WebClientConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.codeyang.auth.config.AuthProperties",
+      "name": "auth.cors",
+      "type": "org.springframework.web.cors.CorsConfiguration"
+    }
+  ]
+}

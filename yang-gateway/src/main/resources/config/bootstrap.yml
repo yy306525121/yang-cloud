@@ -1,0 +1,41 @@
+server:
+  port: 8080
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8761
+        instance:
+          service-base-url: http://localhost:${server.port}
+          name: yang-gateway
+  application:
+    name: yang-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+        - AddResponseHeader=X-Response-Default-Foo, Default-Bar  # 将所有的响应加上头部X-Response-Default-Foo: Default-Bar
+      routes:
+        - id: default_path_to_http
+          uri: http://www.taobao.com
+          order: 10000
+          predicates:
+            - Path=/**
+        - id: auth_server
+          uri: lb://yang-auth
+          order: 1000
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 启用所有的监控端点， 默认是全部关闭的
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

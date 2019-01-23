@@ -1,0 +1,25 @@
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8761
+        instance:
+          service-base-url: http://localhost:${server.port}
+  datasource:
+    url: jdbc:mysql://localhost:3306/yang_auth?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: hello
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 启用所有的监控端点， 默认是全部关闭的
+logging:
+  level:
+    root: debug
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
