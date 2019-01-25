@@ -1,20 +1,18 @@
 package cn.codeyang.registry;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
-import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-@EnableAdminServer
-@EnableDiscoveryClient
+@EnableEurekaServer
 public class YangRegistryApplication {
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(YangRegistryApplication.class)
-				.web(WebApplicationType.REACTIVE)
-				.run(args);
+		//new SpringApplicationBuilder(YangRegistryApplication.class)
+		//		.web(WebApplicationType.REACTIVE)
+		//		.run(args);
+		new SpringApplication(YangRegistryApplication.class).run(args);
 	}
 
 }

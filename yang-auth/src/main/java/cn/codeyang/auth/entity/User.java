@@ -3,12 +3,12 @@ package cn.codeyang.auth.entity;
 import cn.codeyang.common.entity.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -28,6 +28,7 @@ public class User extends BaseEntity<User> implements UserDetails {
 	/**
 	 * 密码
 	 */
+	@JsonIgnore
 	private String password;
 
 	/**

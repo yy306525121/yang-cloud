@@ -1,13 +1,6 @@
 server:
   port: 8080
 spring:
-  boot:
-    admin:
-      client:
-        url: http://localhost:8761
-        instance:
-          service-base-url: http://localhost:${server.port}
-          name: yang-gateway
   application:
     name: yang-gateway
   cloud:

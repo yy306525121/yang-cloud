@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,8 +22,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 
@@ -48,6 +45,8 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 	private AuthProperties authProperties;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private TokenStore tokenStore;
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -134,7 +133,7 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 
 		endpoints
 				.authenticationManager(authenticationManager)
-				.tokenStore(tokenStore())
+				.tokenStore(tokenStore)
 				.tokenEnhancer(tokenEnhancerChain)
 				.reuseRefreshTokens(false);
 	}
@@ -143,19 +142,9 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 	@Qualifier("authenticationManagerBean")
 	private AuthenticationManager authenticationManager;
 
-	@Bean
-	public JwtTokenStore tokenStore() {
-		return new JwtTokenStore(jwtAccessTokenConverter());
-	}
 
-	@Bean
-	public JwtAccessTokenConverter jwtAccessTokenConverter() {
-		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 
-		//生成签名的key
-		converter.setSigningKey("merryyou");
-		return converter;
-	}
+
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {

@@ -16,6 +16,8 @@ import org.springframework.web.cors.CorsConfiguration;
 public class AuthProperties {
 	private CorsConfiguration cors = new CorsConfiguration();
 
+	private String storeType = "jwt";
+
 	private WebClientConfiguration webClientConfiguration = new WebClientConfiguration();
 
 	@Data
