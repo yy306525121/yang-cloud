@@ -58,8 +58,8 @@
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: 'admin'
+        username: 'yang',
+        password: 'hello'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -90,7 +90,7 @@
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('Login', this.loginForm).then(() => {
+          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {
