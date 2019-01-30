@@ -67,6 +67,9 @@ public class User extends BaseEntity<User> implements UserDetails {
 	@TableField(exist = false)
 	private Set<Authority> authorities = new HashSet<>();
 
+	@TableField(exist = false)
+	private Set<Role> roles = new HashSet<>();
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;

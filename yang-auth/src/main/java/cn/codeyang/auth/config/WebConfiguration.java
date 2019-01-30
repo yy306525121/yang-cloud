@@ -29,8 +29,14 @@ public class WebConfiguration implements ServletContextInitializer, WebServerFac
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = authProperties.getCors();
 
+		config.addAllowedOrigin("*");
+		config.addAllowedHeader("*");
+		config.addAllowedMethod("*");
+		config.setAllowCredentials(true);
+
 		if (config.getAllowedOrigins() != null && !config.getAllowedOrigins().isEmpty()) {
 			log.debug("Registering CORS filter");
+			source.registerCorsConfiguration("/oauth/**", config);
 			source.registerCorsConfiguration("/api/**", config);
 			source.registerCorsConfiguration("/management/**", config);
 			source.registerCorsConfiguration("/v2/api-docs", config);

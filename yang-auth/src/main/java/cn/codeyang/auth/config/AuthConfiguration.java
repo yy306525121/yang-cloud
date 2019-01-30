@@ -4,6 +4,7 @@ import cn.codeyang.auth.constant.AuthoritiesConstants;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
@@ -88,7 +89,9 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 					.antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
 					.antMatchers("/v2/api-docs/**").permitAll()
 					.antMatchers("/swagger-resources/configuration/ui").permitAll()
-					.antMatchers("/swagger/ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN);
+					.antMatchers("/swagger/ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
+					.and()
+					.cors();
 		}
 
 		@Override
@@ -120,7 +123,7 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 				.authorities("ROLE_ADMIN")
 				.autoApprove(true)
 				.authorizedGrantTypes("client_credentials")
-				.accessTokenValiditySeconds(30*60)
+				.accessTokenValiditySeconds(30 * 60)
 				.refreshTokenValiditySeconds(7 * 24 * 60 * 60);
 	}
 
@@ -143,11 +146,20 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 	private AuthenticationManager authenticationManager;
 
 
-
-
-
+	/**
+	 * 项目中配置了auth.store-type=jwt或不配置时生效
+	 *
+	 * @param security
+	 * @throws Exception
+	 */
 	@Override
+	@ConditionalOnProperty(prefix = "auth", name = "store-type", havingValue = "jwt", matchIfMissing = true)
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+		/**
+		 * 配置jwt令牌端点的安全约束
+		 */
+		security
+				.tokenKeyAccess("permitAll()")
+				.checkTokenAccess("isAuthenticated()");
 	}
 }

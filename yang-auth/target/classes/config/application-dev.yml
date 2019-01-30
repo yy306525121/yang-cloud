@@ -22,3 +22,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 auth:
   store-type: redis
+  web-client-configuration:
+    access-token-validity-in-seconds: 1800

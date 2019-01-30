@@ -1,8 +1,10 @@
 package cn.codeyang.auth.service.impl;
 
 import cn.codeyang.auth.entity.Authority;
+import cn.codeyang.auth.entity.Role;
 import cn.codeyang.auth.entity.User;
 import cn.codeyang.auth.mapper.AuthorityMapper;
+import cn.codeyang.auth.mapper.RoleMapper;
 import cn.codeyang.auth.mapper.UserMapper;
 import cn.codeyang.auth.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -26,6 +28,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	private UserMapper userMapper;
 	@Autowired
 	private AuthorityMapper authorityMapper;
+	@Autowired
+	private RoleMapper roleMapper;
 
 	@Override
 	public User loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -39,9 +43,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 			if (userByEmail == null) {
 				throw new UsernameNotFoundException("User with email " + username + " was not found in the database");
 			}
-			List<Authority> authorities = authorityMapper.findAuthoritiesByUserId(userByEmail.getId());
-			userByEmail.setAuthorities(new HashSet<>(authorities));
-			return userByEmail;
+			return fillUser(userByEmail);
 		}
 
 
@@ -50,8 +52,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		if (userByUsername == null){
 			throw new UsernameNotFoundException("User with username " + username + " was not found in the database");
 		}
+		return fillUser(userByUsername);
+	}
+
+	private User fillUser(User userByUsername) {
 		List<Authority> authorities = authorityMapper.findAuthoritiesByUserId(userByUsername.getId());
 		userByUsername.setAuthorities(new HashSet<>(authorities));
+		List<Role> roles = roleMapper.findByUserId(userByUsername.getId());
+		userByUsername.setRoles(new HashSet<>(roles));
 		return userByUsername;
 	}
 }
