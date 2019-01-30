@@ -4,23 +4,21 @@
     <sidebar class="sidebar-container"/>
     <div class="main-container">
       <navbar/>
-      <tags-view/>
       <app-main/>
     </div>
   </div>
 </template>
 
 <script>
-import { AppMain, Navbar, Sidebar, TagsView } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
+  import {AppMain, Navbar, Sidebar} from './components'
+  import ResizeMixin from './mixin/ResizeHandler'
 
-export default {
+  export default {
   name: 'Layout',
   components: {
     Navbar,
     Sidebar,
-    AppMain,
-    TagsView
+    AppMain
   },
   mixins: [ResizeMixin],
   computed: {
@@ -41,14 +39,14 @@ export default {
   },
   methods: {
     handleClickOutside() {
-      this.$store.dispatch('closeSideBar', { withoutAnimation: false })
+      this.$store.dispatch('CloseSideBar', { withoutAnimation: false })
     }
   }
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  @import "~@/styles/mixin.scss";
+  @import "src/styles/mixin.scss";
   .app-wrapper {
     @include clearfix;
     position: relative;
