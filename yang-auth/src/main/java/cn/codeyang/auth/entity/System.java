@@ -1,5 +1,6 @@
 package cn.codeyang.auth.entity;
 
+import cn.codeyang.auth.entity.enums.BaseStatusEnum;
 import cn.codeyang.common.entity.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -12,6 +13,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_system")
 public class System extends BaseEntity<System> {
+
 	private String icon;
 	/**
 	 * 系统名称
@@ -30,4 +32,8 @@ public class System extends BaseEntity<System> {
 	 * 系统描述
 	 */
 	private String description;
+
+	private String basePath;
+
+	private BaseStatusEnum status;
 }

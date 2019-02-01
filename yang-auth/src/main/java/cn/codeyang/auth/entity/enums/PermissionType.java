@@ -1,12 +1,10 @@
-package cn.codeyang.auth.enums;
+package cn.codeyang.auth.entity.enums;
 
 import cn.codeyang.common.exception.UnknownEnumException;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-
-import java.io.Serializable;
 
 /**
  * @author yangzhongyang

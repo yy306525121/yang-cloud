@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
 /**
  * @author yangzhongyang
@@ -21,16 +21,16 @@ public class BaseEntity<T extends Model> extends Model<T> {
 	@TableId(type = IdType.AUTO)
 	private Integer id;
 
-	//@TableField(fill = FieldFill.INSERT)
-	//private Instant createTime;
-	//@TableField(fill = FieldFill.INSERT)
-	//private Integer createUid;
-	//
-	//
-	//@TableField(fill = FieldFill.UPDATE)
-	//private Instant updateTime;
-	//@TableField(fill = FieldFill.UPDATE)
-	//private Integer updateUid;
+	@TableField(fill = FieldFill.INSERT)
+	private Date createTime;
+	@TableField(fill = FieldFill.INSERT)
+	private Integer createUid;
+
+
+	@TableField(fill = FieldFill.UPDATE)
+	private Date updateTime;
+	@TableField(fill = FieldFill.UPDATE)
+	private Integer updateUid;
 
 	@Override
 	protected Serializable pkVal() {

@@ -22,5 +22,5 @@ mybatis-plus:
       field-strategy: not_empty
       id-type: auto
       db-type: mysql
-  type-enums-package: cn.codeyang.auth.enums
+  type-enums-package: cn.codeyang.auth.entity.enums
   type-aliases-package: cn.codeyang.auth.entity

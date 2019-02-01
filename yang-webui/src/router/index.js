@@ -60,6 +60,28 @@ export const constantRouterMap = [
   },
 
   {
+    path: '/auth',
+    component: Layout,
+    redirect: '/system/list',
+    name: '系统组织管理',
+    meta: { title: '系统组织管理', icon: 'example' },
+    children: [
+      {
+        path: '/system/list',
+        name: '系统管理',
+        component: () => import('@/views/auth/system/list'),
+        meta: { title: '系统管理', icon: 'table' }
+      },
+      {
+        path: 'organizationManage',
+        name: '组织管理',
+        component: () => import('@/views/auth/system-org/organizationManage'),
+        meta: { title: '组织管理', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
     path: '/form',
     component: Layout,
     children: [

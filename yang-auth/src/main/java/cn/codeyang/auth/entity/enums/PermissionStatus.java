@@ -1,4 +1,4 @@
-package cn.codeyang.auth.enums;
+package cn.codeyang.auth.entity.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.core.enums.IEnum;

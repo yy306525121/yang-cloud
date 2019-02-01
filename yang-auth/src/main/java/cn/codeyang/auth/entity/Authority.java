@@ -1,7 +1,7 @@
 package cn.codeyang.auth.entity;
 
-import cn.codeyang.auth.enums.PermissionStatus;
-import cn.codeyang.auth.enums.PermissionType;
+import cn.codeyang.auth.entity.enums.PermissionStatus;
+import cn.codeyang.auth.entity.enums.PermissionType;
 import cn.codeyang.common.entity.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;

@@ -12,7 +12,7 @@ public class SecurityUtils {
 		if (authenticationDetails == null) {
 			return "";
 		}
-
 		return authenticationDetails.getTokenValue();
 	}
+
 }
