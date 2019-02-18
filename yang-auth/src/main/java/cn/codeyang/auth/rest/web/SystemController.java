@@ -5,6 +5,8 @@ import cn.codeyang.auth.service.SystemService;
 import cn.codeyang.common.http.utils.HttpResult;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author yangzhongyang
  */
 @Slf4j
+@Api(value = "系统管理", description = "系统管理")
 @RestController
 @RequestMapping("/api/system")
 public class SystemController {
@@ -25,9 +28,9 @@ public class SystemController {
 	@Autowired
 	private SystemService systemService;
 
+	@ApiOperation(value = "系统列表")
 	@PostMapping("/list")
 	public IPage<System> list(Page<System> page, String title, String name) {
-		//return systemService.list();
 		return systemService.query()
 				.like(StringUtils.isNotEmpty(title), "title", title)
 				.like(StringUtils.isNotEmpty(name), "name", name)
@@ -36,6 +39,7 @@ public class SystemController {
 	}
 
 
+	@ApiOperation(value = "修改系统信息")
 	@PostMapping("/update")
 	public ResponseEntity<System> updateSystem(@RequestBody System system) {
 		log.debug("REST request to update system : {}", system);
@@ -46,6 +50,7 @@ public class SystemController {
 		return ResponseEntity.ok(null);
 	}
 
+	@ApiOperation(value = "新建系统")
 	@PostMapping("/create")
 	public HttpResult createSystem(@RequestBody System system) {
 		log.debug("REST request to create system : {}", system);
@@ -64,6 +69,7 @@ public class SystemController {
 		return HttpResult.fail("创建失败");
 	}
 
+	@ApiOperation(value = "删除系统")
 	@PostMapping("/delete")
 	public HttpResult deleteSystem(@RequestBody System system){
 		log.debug("REST request to delete system: {}", system);

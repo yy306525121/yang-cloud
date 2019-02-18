@@ -1,6 +1,8 @@
 package cn.codeyang.auth.rest.web;
 
 import cn.codeyang.common.util.SecurityUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/token")
+@Api(value = "token管理", description = "token管理")
 @Slf4j
 public class TokenController {
 	@Autowired
 	private ConsumerTokenServices tokenServices;
 
+	@ApiOperation(value = "删除token")
 	@DeleteMapping("/revoke")
 	public void revokeToken() {
 		String tokenValue = SecurityUtils.getTokenValue();
