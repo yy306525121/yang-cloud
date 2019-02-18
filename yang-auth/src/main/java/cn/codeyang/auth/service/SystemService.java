@@ -1,7 +1,6 @@
 package cn.codeyang.auth.service;
 
 import cn.codeyang.auth.entity.System;
-import cn.codeyang.auth.service.dto.SystemDTO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -12,17 +11,17 @@ public interface SystemService extends IService<System> {
 
 	/**
 	 * 注册新系统
-	 * @param systemDTO
+	 * @param system
 	 * @return
 	 */
-	boolean registerSystem(SystemDTO systemDTO);
+	boolean registerSystem(System system);
 
 	/**
 	 * 更新系统信息
-	 * @param systemDTO
+	 * @param system
 	 * @return
 	 */
-	SystemDTO updateSystem(SystemDTO systemDTO);
+	void updateSystem(System system);
 
 	/**
 	 * 删除系统
@@ -31,7 +30,7 @@ public interface SystemService extends IService<System> {
 	void deleteSystem(Integer id);
 
 
-	SystemDTO getOneByName(String name);
+	System getOneByName(String name);
 
-	SystemDTO getOneByTitle(String title);
+	System getOneByTitle(String title);
 }

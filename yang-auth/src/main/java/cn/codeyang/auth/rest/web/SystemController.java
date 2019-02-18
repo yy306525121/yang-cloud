@@ -1,9 +1,7 @@
 package cn.codeyang.auth.rest.web;
 
 import cn.codeyang.auth.entity.System;
-import cn.codeyang.auth.entity.enums.BaseStatusEnum;
 import cn.codeyang.auth.service.SystemService;
-import cn.codeyang.auth.service.dto.SystemDTO;
 import cn.codeyang.common.http.utils.HttpResult;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -28,44 +26,38 @@ public class SystemController {
 	private SystemService systemService;
 
 	@PostMapping("/list")
-	public IPage<System> list(Page<System> page, String title) {
+	public IPage<System> list(Page<System> page, String title, String name) {
 		//return systemService.list();
 		return systemService.query()
 				.like(StringUtils.isNotEmpty(title), "title", title)
+				.like(StringUtils.isNotEmpty(name), "name", name)
 				.orderByDesc("create_time")
 				.page(page);
 	}
 
 
 	@PostMapping("/update")
-	public ResponseEntity<SystemDTO> updateSystem(@RequestBody SystemDTO systemDTO) {
-		log.debug("REST request to update system : {}", systemDTO);
+	public ResponseEntity<System> updateSystem(@RequestBody System system) {
+		log.debug("REST request to update system : {}", system);
 
-		SystemDTO system = systemService.updateSystem(systemDTO);
+		systemService.updateSystem(system);
 
 
-		return ResponseEntity.ok(system);
+		return ResponseEntity.ok(null);
 	}
 
 	@PostMapping("/create")
-	public HttpResult createSystem(@RequestBody SystemDTO systemDTO) {
-		log.debug("REST request to create system : {}", systemDTO);
+	public HttpResult createSystem(@RequestBody System system) {
+		log.debug("REST request to create system : {}", system);
 
-		if (systemDTO.getId() != null) {
+		if (system.getId() != null) {
 			throw new RuntimeException("id 不能有值");
-		} else if (systemService.getOneByName(systemDTO.getName()) != null) {
+		} else if (systemService.getOneByName(system.getName()) != null) {
 			return HttpResult.fail("name 已存在");
-		} else if (systemService.getOneByTitle(systemDTO.getTitle()) != null) {
+		} else if (systemService.getOneByTitle(system.getTitle()) != null) {
 			return HttpResult.fail("title 已存在");
 		} else {
-			System system = new System();
-			system.setTitle(systemDTO.getTitle());
-			system.setName(systemDTO.getName());
-			system.setIcon(systemDTO.getIcon());
-			system.setDescription(systemDTO.getDescription());
-			system.setBasePath(systemDTO.getBasePath());
-			system.setStatus(BaseStatusEnum.NORMAL);
-			if (systemService.save(system)) {
+			if (systemService.registerSystem(system)) {
 				return HttpResult.ok(system);
 			}
 		}
@@ -73,14 +65,15 @@ public class SystemController {
 	}
 
 	@PostMapping("/delete")
-	public HttpResult deleteSystem(@RequestBody SystemDTO systemDTO){
-		log.debug("REST request to delete system: {}", systemDTO);
+	public HttpResult deleteSystem(@RequestBody System system){
+		log.debug("REST request to delete system: {}", system);
 
 		try {
-			systemService.deleteSystem(systemDTO.getId());
+			systemService.deleteSystem(system.getId());
 			return HttpResult.ok(null);
 		} catch (Exception e){
 			return HttpResult.fail("删除失败");
+
 		}
 	}
 

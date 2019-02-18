@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * Hello world!
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"cn.codeyang"})
 @EnableDiscoveryClient
 public class YangAuthApplication {
 	public static void main(String[] args) {

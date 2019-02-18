@@ -73,9 +73,9 @@ export const constantRouterMap = [
         meta: { title: '系统管理', icon: 'table' }
       },
       {
-        path: 'organizationManage',
+        path: '/organization/list',
         name: '组织管理',
-        component: () => import('@/views/auth/system-org/organizationManage'),
+        component: () => import('@/views/auth/organization/list'),
         meta: { title: '组织管理', icon: 'tree' }
       }
     ]

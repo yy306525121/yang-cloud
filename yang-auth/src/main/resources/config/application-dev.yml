@@ -24,3 +24,10 @@ auth:
   store-type: redis
   web-client-configuration:
     access-token-validity-in-seconds: 1800
+yang:
+  cache:
+    hazelcast:
+      backup-count: 1
+      management-center:
+        enabled: true
+        url: http://127.0.0.1:7878
