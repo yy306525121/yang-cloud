@@ -1,6 +1,6 @@
 package cn.codeyang.auth.config;
 
-import cn.codeyang.auth.constant.AuthoritiesConstants;
+import cn.codeyang.common.constant.AuthoritiesConstants;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

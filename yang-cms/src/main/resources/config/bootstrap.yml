@@ -1,15 +1,12 @@
-server:
-  port: 8888
 spring:
-  profiles:
-    active: dev
   application:
-    name: yang-auth
-#  main:
-#    allow-bean-definition-overriding: true
+    name: yang-cms
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+server:
+  port: 8889
+
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   global-config:

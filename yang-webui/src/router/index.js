@@ -80,6 +80,29 @@ export const constantRouterMap = [
       }
     ]
   },
+  {
+    path: '/resource',
+    component: Layout,
+    redirect: '/resource/list',
+    name: '资源管理',
+    meta: {title: '资源管理', icon: 'example'},
+    children: [
+      {
+        path: 'edit/:id(\\d+)',
+        name: 'ResourceUpload',
+        component: () => import('@/views/resource/edit'),
+        meta: {title: '资源上传', icon: 'tree'}
+      },
+      {
+        path: 'list',
+        name: 'ResourceList',
+        component: () => import('@/views/resource/list'),
+        meta: {title: '资源列表', icon: 'tree'}
+      },
+    ]
+
+
+  },
 
   {
     path: '/form',

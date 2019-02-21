@@ -1,8 +1,8 @@
 package cn.codeyang.auth.rest.web;
 
-import cn.codeyang.auth.constant.AuthoritiesConstants;
 import cn.codeyang.auth.entity.Organization;
 import cn.codeyang.auth.service.OrganizationService;
+import cn.codeyang.common.constant.AuthoritiesConstants;
 import cn.codeyang.common.http.utils.HttpResult;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -36,7 +36,7 @@ public class OrganizationController {
 		return organizationService.query()
 				.like(StringUtils.isNotEmpty(name), "name", name)
 				.eq(pid >= 0, "pid", pid)
-				.orderByDesc("createTime")
+				.orderByDesc("create_time")
 				.page(pageCondition);
 	}
 
@@ -44,6 +44,7 @@ public class OrganizationController {
 	@PreAuthorize("hasRole('"+ AuthoritiesConstants.ADMIN +"')")
 	@PostMapping("/create")
 	public HttpResult createOrganization(Organization organization) {
+		log.debug("REST REQUEST createOrganization : {} ", organization);
 		if (organization.getId() != null) {
 			return HttpResult.fail("id 不能有值");
 		}
@@ -72,6 +73,5 @@ public class OrganizationController {
 		} catch (Exception e){
 			return HttpResult.fail("删除失败");
 		}
-
 	}
 }

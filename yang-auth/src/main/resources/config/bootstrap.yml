@@ -5,15 +5,8 @@ spring:
     active: dev
   application:
     name: yang-auth
-  main:
-    allow-bean-definition-overriding: true
-  boot:
-    admin:
-      client:
-        url: http://localhost:8761
-        instance:
-          service-base-url: http://localhost:${server.port}
-          name: yang-auth
+#  main:
+#    allow-bean-definition-overriding: true
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8

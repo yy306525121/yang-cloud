@@ -16,6 +16,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <yang-common.version>1.0.0-SNAPSHOT</yang-common.version>
+        <yang-cms.version>1.0.0-SNAPSHOT</yang-cms.version>
 
         <spring-boot.version>2.0.8.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
@@ -30,6 +31,7 @@
         <module>yang-common</module>
         <module>yang-registry</module>
         <module>yang-auth</module>
+        <module>yang-cms</module>
         <module>yang-gateway</module>
     </modules>
 

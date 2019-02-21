@@ -1,4 +1,4 @@
-package cn.codeyang.auth.constant;
+package cn.codeyang.common.constant;
 
 /**
  * @author yangzhongyang
