@@ -16,8 +16,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
+import org.springframework.security.oauth2.provider.approval.ApprovalStore;
+import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
 
 import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
 
 /**
  * @author yangzhongyang
@@ -32,6 +35,8 @@ public class AuthWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 	@Autowired
 	private AuthenticationManagerBuilder authenticationManagerBuilder;
+	@Autowired
+	private DataSource dataSource;
 
 	@PostConstruct
 	public void init() {
@@ -53,6 +58,11 @@ public class AuthWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public ApprovalStore approvalStore(){
+		return new JdbcApprovalStore(dataSource);
 	}
 
 	@Override

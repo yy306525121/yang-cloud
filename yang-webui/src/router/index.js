@@ -99,6 +99,18 @@ export const constantRouterMap = [
         component: () => import('@/views/resource/list'),
         meta: {title: '资源列表', icon: 'tree'}
       },
+      {
+        path: 'hls-play',
+        name: 'ResourcePlayHls',
+        component: () => import('@/views/resource/hls-play'),
+        meta: {title: 'hls资源播放', icon: 'tree'}
+      },
+      {
+        path: 'rtmp-play',
+        name: 'ResourcePlayRTMP',
+        component: () => import('@/views/resource/rtmp-play'),
+        meta: {title: 'RTMP资源播放', icon: 'tree'}
+      },
     ]
 
 

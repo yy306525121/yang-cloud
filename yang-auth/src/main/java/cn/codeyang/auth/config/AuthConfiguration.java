@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -20,6 +19,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -27,6 +27,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -43,11 +44,11 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 
 	private ApplicationContext applicationContext;
 	@Autowired
-	private AuthProperties authProperties;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	@Autowired
 	private TokenStore tokenStore;
+	@Autowired
+	private DataSource dataSource;
+	@Autowired
+	private ApprovalStore approvalStore;
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -102,29 +103,7 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		int accessTokenValidity = authProperties.getWebClientConfiguration().getAccessTokenValidityInSeconds();
-		accessTokenValidity = Math.max(accessTokenValidity, MIN_ACCESS_TOKEN_VALIDITY_SECS);
-
-		int refreshTokenValidity = authProperties.getWebClientConfiguration().getRefreshTokenValidityInSecondsForRememberMe();
-		refreshTokenValidity = Math.max(refreshTokenValidity, accessTokenValidity);
-
-		clients.inMemory()
-				.withClient(authProperties.getWebClientConfiguration().getClientId())
-				.secret(passwordEncoder.encode(authProperties.getWebClientConfiguration().getSecret()))
-				.scopes("openid")
-				.autoApprove(true)
-				.authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code")
-				.accessTokenValiditySeconds(accessTokenValidity)
-				.refreshTokenValiditySeconds(refreshTokenValidity)
-				.and()
-				.withClient("yang")
-				.secret(passwordEncoder.encode("hello"))
-				.scopes("web-app")
-				.authorities("ROLE_ADMIN")
-				.autoApprove(true)
-				.authorizedGrantTypes("client_credentials")
-				.accessTokenValiditySeconds(30 * 60)
-				.refreshTokenValiditySeconds(7 * 24 * 60 * 60);
+		clients.jdbc(dataSource);
 	}
 
 	@Override
@@ -137,6 +116,7 @@ public class AuthConfiguration extends AuthorizationServerConfigurerAdapter impl
 		endpoints
 				.authenticationManager(authenticationManager)
 				.tokenStore(tokenStore)
+				.approvalStore(approvalStore)
 				.tokenEnhancer(tokenEnhancerChain)
 				.reuseRefreshTokens(false);
 	}

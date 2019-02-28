@@ -25,6 +25,7 @@
         <hazelcast.version>3.11.1</hazelcast.version>
         <hazelcast-spring.version>3.11.1</hazelcast-spring.version>
         <spring-fox.version>2.9.2</spring-fox.version>
+        <red5.version>1.0.10</red5.version>
     </properties>
 
     <modules>
@@ -95,6 +96,12 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${spring-fox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.red5</groupId>
+                <artifactId>red5-parent</artifactId>
+                <version>${red5.version}</version>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>

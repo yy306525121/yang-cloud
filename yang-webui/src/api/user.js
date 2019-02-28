@@ -25,6 +25,23 @@ export function loginByUsername(username, password) {
   })
 }
 
+export function refreshToken(refresh_token) {
+  const grant_type = 'refresh_token'
+  const data = {
+    grant_type,
+    refresh_token
+  }
+
+  return request({
+    url: '/auth/oauth/token',
+    method: 'post',
+    headers: {
+      'Authorization': 'Basic d2ViX2FwcDpoZWxsbw=='
+    },
+    params: data
+  })
+}
+
 
 /**
  * 获取用户信息

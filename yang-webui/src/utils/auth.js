@@ -1,15 +1,28 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'Yang-Token'
+const AccessTokenKey = 'Yang-Token'
+const RefreshTokenKey = 'Yang-Refresh-Token'
 
-export function getToken() {
-  return Cookies.get(TokenKey)
+export function getAccessToken() {
+  return Cookies.get(AccessTokenKey)
 }
 
-export function setToken(token) {
-  return Cookies.set(TokenKey, token)
+export function setAccessToken(token) {
+  return Cookies.set(AccessTokenKey, token)
 }
 
-export function removeToken() {
-  return Cookies.remove(TokenKey)
+export function removeAccessToken() {
+  return Cookies.remove(AccessTokenKey)
+}
+
+export function getRefreshToken() {
+  return Cookies.get(RefreshTokenKey)
+}
+
+export function setRefreshToken(refreshToken) {
+  return Cookies.set(RefreshTokenKey, refreshToken)
+}
+
+export function removeRefreshToken() {
+  return Cookies.remove(RefreshTokenKey)
 }

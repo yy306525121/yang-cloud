@@ -5,6 +5,15 @@ spring:
     password: hello
     driver-class-name: com.mysql.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      pool-name: DatebookHikariCP
+      connection-test-query: SELECT 1
   redis:
     host: 127.0.0.1
     port: 6379
