@@ -1,17 +1,9 @@
 import {getUserInfo, loginByUsername, logout, refreshToken} from '@/api/user'
-import {
-  getAccessToken,
-  getRefreshToken,
-  removeAccessToken,
-  removeRefreshToken,
-  setAccessToken,
-  setRefreshToken
-} from '@/utils/auth'
+import {getAccessToken, removeAccessToken, setAccessToken} from '@/utils/auth'
 
 const user = {
   state: {
     access_token: getAccessToken(),
-    refresh_token: getRefreshToken(),
     name: '',
     avatar: '',
     introduction: '',
@@ -21,9 +13,6 @@ const user = {
   mutations: {
     SET_ACCESS_TOKEN: (state, access_token) => {
       state.access_token = access_token
-    },
-    SET_REFRESH_TOKEN: (state, refresh_token) => {
-      state.refresh_token = refresh_token
     },
     SET_INTRODUCTION: (state, introduction) => {
       state.introduction = introduction
@@ -55,30 +44,10 @@ const user = {
 
         loginByUsername(username, userInfo.password).then(response => {
           commit('SET_ACCESS_TOKEN', response.access_token)
-          commit('SET_REFRESH_TOKEN', response.refresh_token)
           setAccessToken(response.access_token)
-          setRefreshToken(response.refresh_token)
           resolve()
         }).catch(error => {
           reject(error)
-        })
-      })
-    },
-
-    /**
-     * 刷新令牌
-     * @param token
-     */
-    flushToken({commit}) {
-      return new Promise((resolve, reject) => {
-        refreshToken(getRefreshToken()).then(response => {
-          commit('SET_ACCESS_TOKEN', response.access_token)
-          commit('SET_REFRESH_TOKEN', response.refresh_token)
-          setAccessToken(response.access_token)
-          setRefreshToken(response.refresh_token)
-          resolve()
-        }).catch(err => {
-          reject(err)
         })
       })
     },
@@ -122,10 +91,8 @@ const user = {
       return new Promise((resolve, reject) => {
         logout().then(() => {
           commit('SET_ACCESS_TOKEN', '')
-          commit('SET_REFRESH_TOKEN', '')
           commit('SET_ROLES', [])
           removeAccessToken()
-          removeRefreshToken()
           resolve()
         }).catch(error => {
           reject(error)
@@ -136,21 +103,10 @@ const user = {
     FedLogOut({commit}) {
       return new Promise(resolve => {
         commit('SET_ACCESS_TOKEN', '')
-        commit('SET_REFRESH_TOKEN', '')
-        removeAccessToken()
-        removeRefreshToken()
-        resolve()
-      })
-    },
-
-    DeleteAccessToken({commit}) {
-      return new Promise(resolve => {
-        commit('SET_ACCESS_TOKEN', '')
         removeAccessToken()
         resolve()
       })
     }
-
   }
 }
 

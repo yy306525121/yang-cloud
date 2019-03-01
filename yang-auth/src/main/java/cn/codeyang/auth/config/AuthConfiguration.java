@@ -37,10 +37,6 @@ import java.util.Collection;
 @Configuration
 @EnableAuthorizationServer
 public class AuthConfiguration extends AuthorizationServerConfigurerAdapter implements ApplicationContextAware {
-	/**
-	 * token过期时间（秒）
-	 */
-	public static final int MIN_ACCESS_TOKEN_VALIDITY_SECS = 60;
 
 	private ApplicationContext applicationContext;
 	@Autowired
