@@ -1,5 +1,6 @@
 package cn.codeyang.auth.entity;
 
+import cn.codeyang.auth.entity.enums.ActivatedStatus;
 import cn.codeyang.common.entity.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -45,7 +46,7 @@ public class User extends BaseEntity<User> implements UserDetails {
 	 * 1:是
 	 * 2:否
 	 */
-	private boolean activated;
+	private ActivatedStatus activated;
 	/**
 	 * 用户语言
 	 */

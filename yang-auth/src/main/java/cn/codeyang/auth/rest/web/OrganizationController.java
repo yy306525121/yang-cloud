@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +33,25 @@ public class OrganizationController {
 
 	@ApiOperation(value = "查询所有机构")
 	@PostMapping("/list")
-	public IPage<Organization> list(Page<Organization> pageCondition, String name, int pid) {
-		return organizationService.query()
+	public ResponseEntity<IPage<Organization>> list(long current, long size, String name, int pid) {
+		Page<Organization> page = new Page<>(current, size);
+		IPage<Organization> result = organizationService.query()
 				.like(StringUtils.isNotEmpty(name), "name", name)
 				.eq(pid >= 0, "pid", pid)
 				.orderByDesc("create_time")
-				.page(pageCondition);
+				.page(page);
+		return ResponseEntity.ok(result);
+	}
+
+
+	@ApiOperation(value = "查询单个机构")
+	@PostMapping("/selectOne")
+	public ResponseEntity<Organization> selectOne(Organization organization){
+		if (organization == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		Organization org = organizationService.selectOne(organization);
+		return ResponseEntity.ok(org);
 	}
 
 	@ApiOperation(value = "创建机构")

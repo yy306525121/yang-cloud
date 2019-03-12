@@ -19,3 +19,26 @@ export function getSystemList(title, current, size) {
     params: data
   })
 }
+
+
+/**
+ * 机构列表
+ * @param title
+ * @param current
+ * @param size
+ */
+export function getOrganizationList(title, current, size, pid) {
+
+  console.log("pid: " + pid);
+  const data = {
+    title,
+    current,
+    size
+  }
+
+  return request({
+    url: '/auth/api/organization/list',
+    method: 'post',
+    params: data
+  })
+}

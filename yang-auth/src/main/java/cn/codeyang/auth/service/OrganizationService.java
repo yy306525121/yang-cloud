@@ -12,4 +12,6 @@ public interface OrganizationService extends IService<Organization> {
 	boolean createOrganization(Organization organization);
 
 	void deleteOrganization(Integer id);
+
+	Organization selectOne(Organization organization);
 }

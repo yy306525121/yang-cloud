@@ -11,8 +11,7 @@ export function loginByUsername(username, password) {
   const data = {
     username,
     password,
-    grant_type,
-    scope
+    grant_type
   }
 
   return request({
@@ -32,7 +31,7 @@ export function loginByUsername(username, password) {
 export function getUserInfo() {
   return request({
     url: '/auth/api/user/info',
-    method: 'get'
+    method: 'post'
   })
 }
 
@@ -43,5 +42,14 @@ export function logout(){
   return request({
     url: '/auth/api/token/revoke',
     method: 'delete'
+  })
+}
+
+
+export function fetchList(query){
+  return request({
+    url: '/auth/api/user/list',
+    method: 'post',
+    params: query
   })
 }

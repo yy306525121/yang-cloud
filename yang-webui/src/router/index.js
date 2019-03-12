@@ -73,10 +73,10 @@ export const constantRouterMap = [
         meta: { title: '系统管理', icon: 'table' }
       },
       {
-        path: '/organization/list',
-        name: '组织管理',
-        component: () => import('@/views/auth/organization/list'),
-        meta: { title: '组织管理', icon: 'tree' }
+        path: '/user/list',
+        name: '用户管理',
+        component: () => import('@/views/auth/user/list'),
+        meta: { title: '用户管理', icon: 'tree' }
       }
     ]
   },
