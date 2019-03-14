@@ -17,6 +17,11 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+  mail:
+    host: smtp.163.com
+    port: 25
+    username: firm_yang@163.com
+    password: jazr932832
 management:
   endpoints:
     web:
@@ -40,3 +45,7 @@ yang:
       management-center:
         enabled: true
         url: http://127.0.0.1:7878
+  mail:
+    enabled: true
+    from: firm_yang@163.com
+    base-url: http://127.0.0.11024

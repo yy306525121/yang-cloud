@@ -13,5 +13,5 @@ public interface AuthorityService extends IService<Authority> {
 	 * 根据userId查询用户权限
 	 * @param userId 用户ID
 	 */
-	List<Authority> findAuthoritiesByUserId(Integer userId);
+	List<Authority> findAuthoritiesByUserId(Long userId);
 }

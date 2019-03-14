@@ -18,7 +18,7 @@ public class AuthorityServiceImplTest {
 
 	@Test
 	public void findAuthoritiesByUserId() {
-		List<Authority> authoritiesByUserId = authorityService.findAuthoritiesByUserId(1);
+		List<Authority> authoritiesByUserId = authorityService.findAuthoritiesByUserId(1L);
 		System.out.println(authoritiesByUserId);
 	}
 }

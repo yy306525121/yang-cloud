@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.Email;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -37,6 +38,7 @@ public class User extends BaseEntity<User> implements UserDetails {
 	 */
 	private String nickname;
 
+	@Email
 	private String email;
 
 	private String avatar;

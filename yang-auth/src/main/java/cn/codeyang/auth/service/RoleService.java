@@ -9,5 +9,5 @@ import java.util.List;
  * @author yangzhongyang
  */
 public interface RoleService extends IService<Role> {
-	List<Role> selectByUserId(Integer userId);
+	List<Role> selectByUserId(Long userId);
 }

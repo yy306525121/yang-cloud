@@ -28,7 +28,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
 	}
 
 	@Override
-	public void deleteOrganization(Integer id) {
+	public void deleteOrganization(Long id) {
 		Organization organization = new Organization();
 		organization.setId(id);
 		organization.setStatus(BaseStatusEnum.DELETED);

@@ -36,4 +36,10 @@ public interface YangDefaults {
 			}
 		}
 	}
+
+	interface Mail {
+		boolean enabled = false;
+		String from = "";
+		String baseUrl = "";
+	}
 }

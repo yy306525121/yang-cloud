@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TokenController {
 	@Autowired
-	private ConsumerTokenServices tokenServices;
+	private ConsumerTokenServices consumerTokenServices;
 
 	@ApiOperation(value = "删除token")
 	@DeleteMapping("/revoke")
@@ -29,7 +29,7 @@ public class TokenController {
 		if (StringUtils.isEmpty(tokenValue)){
 			log.warn("获取当前用户tokenValue失败");
 		}
-		tokenServices.revokeToken(tokenValue);
+		consumerTokenServices.revokeToken(tokenValue);
 		log.info("注销成功 tokenValue: {}", tokenValue);
 	}
 }

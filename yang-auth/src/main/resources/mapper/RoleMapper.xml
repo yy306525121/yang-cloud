@@ -9,4 +9,7 @@
                  left join t_role t2 on t1.role_id = t2.id
         where t1.user_id = #{userId}
     </select>
+    <select id="selectByName" resultType="cn.codeyang.auth.entity.Role">
+        select * from t_role where name = #{name}
+    </select>
 </mapper>

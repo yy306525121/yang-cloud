@@ -11,5 +11,7 @@ import java.util.List;
  */
 @Repository
 public interface RoleMapper extends BaseMapper<Role> {
-	List<Role> findByUserId(Integer userId);
+	List<Role> findByUserId(Long userId);
+
+	Role selectByName(String user);
 }

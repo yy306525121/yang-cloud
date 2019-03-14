@@ -19,18 +19,18 @@ import java.util.Date;
 public class BaseEntity<T extends Model> extends Model<T> {
 
 	@TableId(type = IdType.AUTO)
-	private Integer id;
+	private Long id;
 
 	@TableField(fill = FieldFill.INSERT)
 	private Date createTime;
 	@TableField(fill = FieldFill.INSERT)
-	private Integer createUid;
+	private Long createUid;
 
 
 	@TableField(fill = FieldFill.UPDATE)
 	private Date updateTime;
 	@TableField(fill = FieldFill.UPDATE)
-	private Integer updateUid;
+	private Long updateUid;
 
 	@Override
 	protected Serializable pkVal() {

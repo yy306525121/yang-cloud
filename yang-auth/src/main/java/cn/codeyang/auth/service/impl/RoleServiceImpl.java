@@ -17,7 +17,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 	@Autowired
 	private RoleMapper roleMapper;
 	@Override
-	public List<Role> selectByUserId(Integer userId) {
+	public List<Role> selectByUserId(Long userId) {
 		return roleMapper.findByUserId(userId);
 	}
 }

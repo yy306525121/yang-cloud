@@ -40,4 +40,5 @@ public class UserController {
 	public User info(){
 		return SecurityUtils.getCurrentUser();
 	}
+
 }

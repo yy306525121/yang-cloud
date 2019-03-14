@@ -27,7 +27,7 @@ public interface SystemService extends IService<System> {
 	 * 删除系统
 	 * @param id
 	 */
-	void deleteSystem(Integer id);
+	void deleteSystem(Long id);
 
 
 	System getOneByName(String name);

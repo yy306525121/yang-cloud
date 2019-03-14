@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 public class YangProperties {
 
 	private final Cache cache = new Cache();
+	private final Mail mail = new Mail();
 
 	@Data
 	public static class Cache {
@@ -30,5 +31,16 @@ public class YangProperties {
 				private String url = YangDefaults.Cache.Hazelcast.ManagementCenter.url;
 			}
 		}
+	}
+
+	@Data
+	public static class Mail {
+
+		private boolean enabled = YangDefaults.Mail.enabled;
+
+		private String from = YangDefaults.Mail.from;
+
+		private String baseUrl = YangDefaults.Mail.baseUrl;
+
 	}
 }

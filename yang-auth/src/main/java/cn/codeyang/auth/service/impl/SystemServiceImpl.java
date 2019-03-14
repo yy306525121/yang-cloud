@@ -32,7 +32,7 @@ public class SystemServiceImpl extends ServiceImpl<SystemMapper, System> impleme
 	}
 
 	@Override
-	public void deleteSystem(Integer id) {
+	public void deleteSystem(Long id) {
 		System system = new System();
 		system.setId(id);
 		system.setStatus(BaseStatusEnum.DELETED);
