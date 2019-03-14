@@ -1,4 +1,4 @@
-package cn.codeyang.auth.rest.web;
+package cn.codeyang.auth.web.rest;
 
 import cn.codeyang.auth.entity.System;
 import cn.codeyang.auth.service.SystemService;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "系统管理", description = "系统管理")
 @RestController
 @RequestMapping("/api/system")
-public class SystemController {
+public class SystemResource {
 
 	@Autowired
 	private SystemService systemService;

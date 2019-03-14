@@ -1,4 +1,4 @@
-package cn.codeyang.auth.rest.web;
+package cn.codeyang.auth.web.rest;
 
 import cn.codeyang.auth.entity.User;
 import cn.codeyang.auth.service.UserService;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(value = "用户管理", description = "用户管理")
 @RequestMapping("/api/user")
-public class UserController {
+public class UserResource {
 	@Autowired
 	private UserService userService;
 

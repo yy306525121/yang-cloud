@@ -22,10 +22,10 @@
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-boot-admin.version>2.0.4</spring-boot-admin.version>
         <platform-bom.version>Cairo-SR6</platform-bom.version>
-        <hazelcast.version>3.11.1</hazelcast.version>
-        <hazelcast-spring.version>3.11.1</hazelcast-spring.version>
         <spring-fox.version>2.9.2</spring-fox.version>
         <spring-security-oauth2.version>2.3.4.RELEASE</spring-security-oauth2.version>
+        <hazelcast.version>3.11.2</hazelcast.version>
+        <hazelcast-spring.version>3.11.2</hazelcast-spring.version>
     </properties>
 
     <modules>
@@ -77,17 +77,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.hazelcast</groupId>
-                <artifactId>hazelcast</artifactId>
-                <version>${hazelcast.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hazelcast</groupId>
-                <artifactId>hazelcast-spring</artifactId>
-                <version>${hazelcast-spring.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${spring-fox.version}</version>
@@ -101,6 +90,16 @@
                 <groupId>org.springframework.security.oauth</groupId>
                 <artifactId>spring-security-oauth2</artifactId>
                 <version>${spring-security-oauth2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hazelcast</groupId>
+                <artifactId>hazelcast</artifactId>
+                <version>${hazelcast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hazelcast</groupId>
+                <artifactId>hazelcast-spring</artifactId>
+                <version>${hazelcast-spring.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

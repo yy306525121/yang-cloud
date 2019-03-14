@@ -1,4 +1,4 @@
-package cn.codeyang.auth.rest.web;
+package cn.codeyang.auth.web.rest;
 
 import cn.codeyang.auth.entity.Organization;
 import cn.codeyang.auth.service.OrganizationService;
@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "机构管理", description = "机构管理")
 @Slf4j
 @RequestMapping("/api/organization")
-public class OrganizationController {
+public class OrganizationResource {
 
 	private OrganizationService organizationService;
 
-	public OrganizationController(OrganizationService organizationService){
+	public OrganizationResource(OrganizationService organizationService){
 		this.organizationService = organizationService;
 	}
 

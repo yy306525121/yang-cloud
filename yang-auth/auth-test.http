@@ -15,7 +15,7 @@ Authorization: Basic d2ViX2FwcDpoZWxsbw==
 
 # 获取用户信息
 POST http://localhost:8888/api/user/info
-Authorization: Bearer 2c172b5c-4008-419d-948a-4998bdb581b6
+Authorization: Bearer f36b44c1-30bb-4e81-899f-6c665071fbdb
 
 ###
 # 刷新token

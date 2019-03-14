@@ -1,4 +1,4 @@
-package cn.codeyang.auth.rest.web;
+package cn.codeyang.auth.web.rest;
 
 import cn.codeyang.common.util.SecurityUtils;
 import io.swagger.annotations.Api;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/token")
 @Api(value = "token管理", description = "token管理")
 @Slf4j
-public class TokenController {
+public class TokenResource {
 	@Autowired
 	private ConsumerTokenServices consumerTokenServices;
 

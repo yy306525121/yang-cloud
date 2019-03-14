@@ -12,6 +12,10 @@ spring:
     time-zone: GMT+8
   messages:
     basename: i18n/messages
+  cache:
+    type: hazelcast
+  hazelcast:
+    config: classpath:config/hazelcast.xml
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   global-config:
