@@ -25,7 +25,7 @@
         <hazelcast.version>3.11.1</hazelcast.version>
         <hazelcast-spring.version>3.11.1</hazelcast-spring.version>
         <spring-fox.version>2.9.2</spring-fox.version>
-        <red5.version>1.0.10</red5.version>
+        <spring-security-oauth2.version>2.3.4.RELEASE</spring-security-oauth2.version>
     </properties>
 
     <modules>
@@ -98,10 +98,9 @@
                 <version>${spring-fox.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.red5</groupId>
-                <artifactId>red5-parent</artifactId>
-                <version>${red5.version}</version>
-                <type>pom</type>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring-security-oauth2.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
