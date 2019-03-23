@@ -1,5 +1,6 @@
 package cn.codeyang.common.util;
 
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
@@ -13,6 +14,11 @@ public class SecurityUtils {
 			return "";
 		}
 		return authenticationDetails.getTokenValue();
+	}
+
+	public static Object getCurrentUser(){
+		SecurityContext context = SecurityContextHolder.getContext();
+		return context.getAuthentication().getPrincipal();
 	}
 
 }

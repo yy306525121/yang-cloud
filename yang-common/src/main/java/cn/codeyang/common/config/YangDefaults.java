@@ -42,4 +42,10 @@ public interface YangDefaults {
 		String from = "";
 		String baseUrl = "";
 	}
+
+	interface Sentry {
+		boolean enabled = false;
+		String dsn
+				= "";
+	}
 }

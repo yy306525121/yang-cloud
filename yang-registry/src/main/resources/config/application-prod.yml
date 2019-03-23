@@ -1,0 +1,4 @@
+yang:
+  sentry:
+    enabled: true
+    dsn: https://77829063805c4694a24dfd9e6cf17402@sentry.io/1421314

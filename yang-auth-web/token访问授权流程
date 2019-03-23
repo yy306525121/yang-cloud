@@ -1,0 +1,6 @@
+OAuth2AuthenticationProcessingFilter.doFilter
+  -->tokenExtractor.extract(request);    //从request中获取token
+  -->authenticationManager.authenticate(authentication);
+    -->OAuth2AuthenticationManager.authenticate
+      -->tokenServices.loadAuthentication(token);
+        -->

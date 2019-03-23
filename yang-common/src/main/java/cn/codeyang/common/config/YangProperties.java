@@ -3,6 +3,7 @@ package cn.codeyang.common.config;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfiguration;
 
 /**
  * @author yangzhongyang
@@ -14,10 +15,13 @@ public class YangProperties {
 
 	private final Cache cache = new Cache();
 	private final Mail mail = new Mail();
+	private CorsConfiguration cors = new CorsConfiguration();
+	private Sentry sentry = new Sentry();
 
 	@Data
 	public static class Cache {
 		private final Hazelcast hazelcast = new Hazelcast();
+
 		@Data
 		public static class Hazelcast {
 			private int timeToLiveSeconds = YangDefaults.Cache.Hazelcast.timeToLiveSeconds;
@@ -42,5 +46,12 @@ public class YangProperties {
 
 		private String baseUrl = YangDefaults.Mail.baseUrl;
 
+	}
+
+
+	@Data
+	public static class Sentry {
+		private boolean enabled = YangDefaults.Sentry.enabled;
+		private String dsn = YangDefaults.Sentry.dsn;
 	}
 }

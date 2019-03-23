@@ -17,6 +17,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <yang-common.version>1.0.0-SNAPSHOT</yang-common.version>
         <yang-cms.version>1.0.0-SNAPSHOT</yang-cms.version>
+        <yang-auth.version>1.0.0-SNAPSHOT</yang-auth.version>
+        <yang-product-api.version>1.0.0-SNAPSHOT</yang-product-api.version>
+        <yang-product-web.version>1.0.0-SNAPSHOT</yang-product-web.version>
 
         <spring-boot.version>2.0.8.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
@@ -29,11 +32,12 @@
     </properties>
 
     <modules>
-        <module>yang-common</module>
-        <module>yang-registry</module>
-        <module>yang-auth</module>
+       <module>yang-registry</module>
         <module>yang-cms</module>
         <module>yang-gateway</module>
+        <module>yang-product-api</module>
+        <module>yang-product-web</module>
+        <module>yang-auth-api</module>
     </modules>
 
     <dependencyManagement>
@@ -53,13 +57,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-dependencies</artifactId>
-                <version>${spring-boot-admin.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>3.0.7.1</version>
@@ -68,6 +65,11 @@
                 <groupId>cn.codeyang</groupId>
                 <artifactId>yang-common</artifactId>
                 <version>${yang-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.codeyang</groupId>
+                <artifactId>yang-auth-api</artifactId>
+                <version>${yang-auth.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.spring.platform</groupId>
@@ -101,6 +103,13 @@
                 <artifactId>hazelcast-spring</artifactId>
                 <version>${hazelcast-spring.version}</version>
             </dependency>
+
+            <!--Sentry-->
+            <dependency>
+                <groupId>io.sentry</groupId>
+                <artifactId>sentry-spring</artifactId>
+                <version>1.7.16</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -120,7 +129,47 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
     </dependencies>
 
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>1.2.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+    <profiles>
+        <profile>
+            <id>rdc-private-repo</id>
+            <repositories>
+                <repository>
+                    <id>rdc-releases</id>
+                    <url>https://repo.rdc.aliyun.com/repository/67818-release-Ikcy2o/</url>
+                </repository>
+                <repository>
+                    <id>rdc-snapshots</id>
+                    <url>https://repo.rdc.aliyun.com/repository/67818-snapshot-YAFarD/</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <repository>
+            <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/67818-snapshot-YAFarD/</url>
+        </repository>
+    </distributionManagement>
 </project>

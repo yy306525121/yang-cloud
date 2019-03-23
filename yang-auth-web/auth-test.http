@@ -1,0 +1,29 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+# 获取access_token和refresh_token
+POST http://localhost:8888/oauth/token?grant_type=password&username=yang&password=hello1
+Accept: */*
+Cache-Control: no-cache
+Authorization: Basic d2ViX2FwcDpoZWxsbw==
+
+###
+
+# 获取用户信息
+POST http://localhost:8888/api/user/info
+Authorization: Bearer f36b44c1-30bb-4e81-899f-6c665071fbdb
+
+###
+# 刷新token
+POST http://localhost:8888/oauth/token?grant_type=refresh_token&refresh_token=efeebe75-e6b3-4c00-9f55-71bab59793fa
+Accept: */*
+Cache-Control: no-cache
+Authorization: Basic d2ViX2FwcDpoZWxsbw==
+
+###
+
+
