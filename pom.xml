@@ -21,6 +21,9 @@
         <yang-product-api.version>1.0.0-SNAPSHOT</yang-product-api.version>
         <yang-product-web.version>1.0.0-SNAPSHOT</yang-product-web.version>
 
+
+        <spring-boot-starter-amqp.version>2.1.3.RELEASE</spring-boot-starter-amqp.version>
+
         <spring-boot.version>2.0.8.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-boot-admin.version>2.0.4</spring-boot-admin.version>
@@ -104,12 +107,20 @@
                 <version>${hazelcast-spring.version}</version>
             </dependency>
 
-            <!--Sentry-->
+            <!--Sentry Start-->
             <dependency>
                 <groupId>io.sentry</groupId>
                 <artifactId>sentry-spring</artifactId>
                 <version>1.7.16</version>
             </dependency>
+            <!--Sentry End-->
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring-boot-starter-amqp.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
