@@ -129,6 +129,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>cn.codeyang</groupId>
+            <artifactId>yang-framework</artifactId>
+            <version>${yang-framework.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
