@@ -36,12 +36,14 @@
     </properties>
 
     <modules>
+       <module>yang-common</module>
        <module>yang-registry</module>
         <module>yang-cms</module>
         <module>yang-gateway</module>
         <module>yang-product-api</module>
         <module>yang-product-web</module>
         <module>yang-auth-api</module>
+        <module>yang-auth-web</module>
     </modules>
 
     <dependencyManagement>

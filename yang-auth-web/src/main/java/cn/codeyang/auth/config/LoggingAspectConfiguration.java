@@ -1,7 +1,7 @@
 package cn.codeyang.auth.config;
 
 import cn.codeyang.auth.aop.logging.LoggingAspect;
-import cn.codeyang.common.config.YangConstants;
+import cn.codeyang.framework.config.YangConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;

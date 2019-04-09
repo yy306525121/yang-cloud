@@ -1,6 +1,6 @@
 package cn.codeyang.auth.aop.logging;
 
-import cn.codeyang.common.config.YangConstants;
+import cn.codeyang.framework.config.YangConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -38,7 +38,7 @@ public class LoggingAspect {
 	 */
 	@Pointcut("within(cn.codeyang.auth.mapper..*)" +
 			" || within(cn.codeyang.auth.service..*)" +
-			" || within(cn.codeyang.auth.rest..*)")
+			" || within(cn.codeyang.auth.web.rest..*)")
 	public void applicationPackagePointcut() {
 	}
 
