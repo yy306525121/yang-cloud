@@ -1,7 +1,12 @@
 <template>
   <div class="app-container">
+    <div class="filter-container">
+      <el-input v-model="listQuery.username" placeholder="用户名" class="filter-item" style="width: 200px;" @keyup.enter.native="handleFilter"></el-input>
+      <el-button type="primary" class="filter-item" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleCreate">新建</el-button>
+    </div>
     <el-table
-      v-loading="listLoading" element-loading-text="拼命加载中" :data="list" fit highlight-current-row="true" style="width: 100%;">
+      v-loading="listLoading" element-loading-text="拼命加载中" :data="list" fit highlight-current-row style="width: 100%;">
       <el-table-column label="ID" align="center" width="80">
         <template slot-scope="scope">
           <span>{{scope.row.id}}</span>
@@ -28,6 +33,17 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogVisible" width="30%">
+      <el-form ref="dataForm" :model="temp" label-width="80px">
+        <el-form-item label=""></el-form-item>
+      </el-form>
+      <span>这是一段信息</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -40,10 +56,16 @@
       return {
         list: null,
         total: 0,
-        loadingList: true,
+        listLoading: true,
         listQuery: {
+          username: "",
           current: 1,
           size: 20
+        },
+        dialogVisible: false,
+        textMap: {
+          update: "编辑用户",
+          create: "新建用户"
         }
       }
     },
@@ -52,12 +74,20 @@
     },
     methods: {
       getList: function () {
-        this.loadingList = true
+        this.listLoading = true
         fetchList(this.listQuery).then(data => {
           this.list = data.records
           this.total = data.total
-          this.loadingList = false
+          this.listLoading = false
         })
+      },
+      handleFilter: function(){
+        this.listQuery.page = 1
+        this.getList()
+      },
+      handleCreate: function(){
+        this.dialogStatus = 'create'
+        this.dialogVisible = true
       }
     },
     filters: {

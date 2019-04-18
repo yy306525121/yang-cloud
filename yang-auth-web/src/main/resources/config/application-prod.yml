@@ -22,6 +22,16 @@ spring:
     port: 25
     username: firm_yang@163.com
     password: jazr932832
+  rabbitmq:
+    addresses: 127.0.0.1:5672
+    username: user
+    password: hello
+    virtual-host: /
+    connection-timeout: 15000
+    publisher-confirms: true  # 监听Broker返回的确认请求
+    publisher-returns: true  # 监听投递失败的消息， 保证投递的可靠性
+    template:
+      mandatory: true  #这里必须设置为true, 否则监听无效
 management:
   endpoints:
     web:
@@ -29,7 +39,7 @@ management:
         include: '*'  # 启用所有的监控端点， 默认是全部关闭的
 logging:
   level:
-    root: debug
+    root: info
 eureka:
   client:
     service-url:

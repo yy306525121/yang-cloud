@@ -16,8 +16,10 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <yang-common.version>1.0.0-SNAPSHOT</yang-common.version>
-        <yang-cms.version>1.0.0-SNAPSHOT</yang-cms.version>
-        <yang-auth.version>1.0.0-SNAPSHOT</yang-auth.version>
+        <yang-cms-api.version>1.0.0-SNAPSHOT</yang-cms-api.version>
+        <yang-cms-web.version>1.0.0-SNAPSHOT</yang-cms-web.version>
+        <yang-auth-api.version>1.0.0-SNAPSHOT</yang-auth-api.version>
+        <yang-auth-web.version>1.0.0-SNAPSHOT</yang-auth-web.version>
         <yang-product-api.version>1.0.0-SNAPSHOT</yang-product-api.version>
         <yang-product-web.version>1.0.0-SNAPSHOT</yang-product-web.version>
         <yang-framework.version>1.0.0-SNAPSHOT</yang-framework.version>
@@ -44,6 +46,8 @@
         <module>yang-product-web</module>
         <module>yang-auth-api</module>
         <module>yang-auth-web</module>
+        <module>yang-cms-api</module>
+        <module>yang-cms-web</module>
     </modules>
 
     <dependencyManagement>
@@ -74,8 +78,18 @@
             </dependency>
             <dependency>
                 <groupId>cn.codeyang</groupId>
+                <artifactId>yang-framework</artifactId>
+                <version>${yang-framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.codeyang</groupId>
                 <artifactId>yang-auth-api</artifactId>
-                <version>${yang-auth.version}</version>
+                <version>${yang-auth-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.codeyang</groupId>
+                <artifactId>yang-cms-api</artifactId>
+                <version>${yang-cms-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.spring.platform</groupId>
@@ -122,6 +136,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${spring-boot-starter-amqp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>4.5.6</version>
             </dependency>
 
         </dependencies>

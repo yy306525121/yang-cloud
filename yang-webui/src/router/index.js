@@ -89,7 +89,8 @@ export const constantRouterMap = [
     meta: {title: '资源管理', icon: 'example'},
     children: [
       {
-        path: 'edit/:id(\\d+)',
+        // path: 'edit/:id(\\d+)',
+        path: 'edit',
         name: 'ResourceUpload',
         component: () => import('@/views/resource/edit'),
         meta: {title: '资源上传', icon: 'tree'}

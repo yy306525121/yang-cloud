@@ -31,7 +31,7 @@ export function loginByUsername(username, password) {
 export function getUserInfo() {
   return request({
     url: '/auth/api/user/info',
-    method: 'post'
+    method: 'get'
   })
 }
 

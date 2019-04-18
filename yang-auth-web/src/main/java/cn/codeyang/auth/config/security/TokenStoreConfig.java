@@ -1,9 +1,12 @@
 package cn.codeyang.auth.config.security;
 
+import cn.codeyang.framework.config.YangRedisTokenStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
@@ -31,5 +34,11 @@ public class TokenStoreConfig {
 		tokenStoreService.setPrefix("user-token:");
 		return tokenStoreService;
 	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEncoder();
+	}
+
 }
 

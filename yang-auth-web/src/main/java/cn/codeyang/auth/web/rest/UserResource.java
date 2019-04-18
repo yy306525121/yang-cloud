@@ -7,8 +7,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,9 +28,11 @@ public class UserResource {
 
 	@ApiOperation(value = "用户列表")
 	@PostMapping("list")
-	public ResponseEntity<IPage<User>> list(long current, long size){
+	public ResponseEntity<IPage<User>> list(long current, long size, String username){
 		Page<User> pageCondition = new Page<>(current, size);
 		IPage<User> result = userService.query()
+				.likeRight(StringUtils.isNotBlank(username), "" +
+						"username", username)
 				.orderByDesc("create_time")
 				.page(pageCondition);
 
@@ -36,7 +40,7 @@ public class UserResource {
 	}
 
 	@ApiOperation(value = "显示当前用户")
-	@PostMapping("/info")
+	@GetMapping("/info")
 	public User info(){
 		Object currentUser = SecurityUtils.getCurrentUser();
 		if (currentUser instanceof User){

@@ -31,7 +31,7 @@ spring:
     publisher-confirms: true  # 监听Broker返回的确认请求
     publisher-returns: true  # 监听投递失败的消息， 保证投递的可靠性
     template:
-      mandatory: true  #这里必须设置为true, 否则监听无效
+      mandatory: true  #这里必须设置为true, 否则监听无over
 
 management:
   endpoints:
@@ -56,3 +56,4 @@ yang:
     enabled: true
     from: firm_yang@163.com
     base-url: http://127.0.0.11024
+
