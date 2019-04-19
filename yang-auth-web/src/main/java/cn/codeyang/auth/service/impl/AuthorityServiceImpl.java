@@ -21,6 +21,7 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityMapper, Authority
 	 * 根据userId查询用户权限
 	 * @param userId 用户ID
 	 */
+	@Override
 	public List<Authority> findAuthoritiesByUserId(Long userId){
 		return authorityMapper.findAuthoritiesByUserId(userId);
 	}

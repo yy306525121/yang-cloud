@@ -17,6 +17,13 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+    jedis:
+      pool:
+        max-active: 100  #连接池最大连接数
+        max-idle: 10  #连接池中最小空闲连接
+        max-wait: 10000  #连接池最大阻塞等待时间
+    timeout: 5000 # 连接超时时间
+    database: 0  #默认索引为0的数据库
   mail:
     host: smtp.163.com
     port: 25
@@ -32,7 +39,6 @@ spring:
     publisher-returns: true  # 监听投递失败的消息， 保证投递的可靠性
     template:
       mandatory: true  #这里必须设置为true, 否则监听无over
-
 management:
   endpoints:
     web:
