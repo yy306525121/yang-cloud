@@ -1,6 +1,6 @@
 package cn.codeyang.auth.config.security;
 
-import cn.codeyang.framework.config.YangRedisTokenStore;
+import cn.codeyang.auth.config.YangRedisTokenStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -40,7 +40,6 @@
     <modules>
        <module>yang-common</module>
        <module>yang-registry</module>
-        <module>yang-cms</module>
         <module>yang-gateway</module>
         <module>yang-product-api</module>
         <module>yang-product-web</module>
