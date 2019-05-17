@@ -11,6 +11,9 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 
 import java.util.Date;
 
+/**
+ * @author akafra
+ */
 public class YangRedisTokenStore extends RedisTokenStore {
 	private ClientDetailsService clientDetailsService;
 
@@ -49,5 +52,10 @@ public class YangRedisTokenStore extends RedisTokenStore {
 		// default 12 hours.
 		int accessTokenValiditySeconds = 60 * 60 * 12;
 		return accessTokenValiditySeconds;
+	}
+
+	@Override
+	public OAuth2AccessToken getAccessToken(OAuth2Authentication authentication) {
+		return super.getAccessToken(authentication);
 	}
 }

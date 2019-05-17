@@ -15,6 +15,7 @@ public class Resource extends BaseEntity<Resource> {
 	private String name;
 	private String path;
 	private String type;
+	private String md5;
 	private Long size;
 	private Byte status;
 }

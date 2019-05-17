@@ -9,7 +9,7 @@ import cn.codeyang.auth.mapper.AuthorityMapper;
 import cn.codeyang.auth.mapper.RoleMapper;
 import cn.codeyang.auth.mapper.UserMapper;
 import cn.codeyang.common.constant.AuthoritiesConstants;
-import cn.codeyang.common.util.RandomUtil;
+import cn.codeyang.common.utils.RandomUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

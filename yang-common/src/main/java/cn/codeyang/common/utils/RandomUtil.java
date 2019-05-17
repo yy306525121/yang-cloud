@@ -1,4 +1,4 @@
-package cn.codeyang.common.util;
+package cn.codeyang.common.utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
 

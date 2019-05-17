@@ -2,7 +2,7 @@ package cn.codeyang.auth.web.rest;
 
 import cn.codeyang.auth.api.entity.User;
 import cn.codeyang.auth.api.service.UserService;
-import cn.codeyang.common.util.SecurityUtils;
+import cn.codeyang.common.utils.SecurityUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;

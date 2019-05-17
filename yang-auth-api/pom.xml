@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>yang-auth-api</artifactId>
-    <version>${yang-auth.version}</version>
+    <version>${yang-auth-api.version}</version>
     <packaging>jar</packaging>
 
     <properties>

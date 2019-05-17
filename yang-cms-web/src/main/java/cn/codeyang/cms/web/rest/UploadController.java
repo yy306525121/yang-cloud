@@ -1,9 +1,11 @@
 package cn.codeyang.cms.web.rest;
 
+import cn.codeyang.cms.api.service.FileService;
 import cn.codeyang.common.http.utils.HttpResult;
 import cn.hutool.core.io.FileUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,9 +36,12 @@ public class UploadController {
 	@Value("${file.upload-folder}")
 	private String uploadFolder;
 
-	@PostMapping("")
-	public ResponseEntity<HttpResult> upload(MultipartFile file){
-		log.debug("Rest Upload file : {}", file);
+	@Autowired
+	private FileService fileService;
+
+	@PostMapping("/simpleUpload")
+	public ResponseEntity<HttpResult> upload(MultipartFile file) {
+		log.debug("Rest simpleUpload file : {}", file);
 
 		if (Objects.isNull(file) || file.isEmpty()) {
 			log.error("文件不能为空");
@@ -76,5 +81,30 @@ public class UploadController {
 			e.printStackTrace();
 			return ResponseEntity.ok(HttpResult.fail("文件上传失败"));
 		}
+	}
+
+	/**
+	 * 大文件断点续传
+	 *
+	 * @param name
+	 * @param md5
+	 * @param size   文件大小
+	 * @param chunks 总分块数
+	 * @param chunk  分块号
+	 * @param file
+	 * @return
+	 */
+	@PostMapping("/blockUpload")
+	public ResponseEntity<HttpResult> breakPointUpload(String name, String md5, String type, Long totalSize, Long currentSize, Integer chunks, Integer chunk, MultipartFile file) throws IOException {
+		log.debug("Rest simpleUpload file : {}", file);
+		if (chunks != null && chunks != 0) {
+			fileService.uploadWithBlock(name, type, md5, totalSize, chunks, chunk, file.getInputStream(), currentSize);
+		} else {
+			fileService.upload(name, type, md5, totalSize, file.getInputStream());
+		}
+		log.debug("文件上传成功");
+
+
+		return ResponseEntity.ok(HttpResult.ok(null));
 	}
 }

@@ -90,6 +90,13 @@ export const constantRouterMap = [
     children: [
       {
         // path: 'edit/:id(\\d+)',
+        path: 'blockUpload',
+        name: 'BlockUpload',
+        component: () => import('@/views/resource/blockUpload'),
+        meta: {title: '分片上传', icon: 'tree'}
+      },
+      {
+        // path: 'edit/:id(\\d+)',
         path: 'edit',
         name: 'ResourceUpload',
         component: () => import('@/views/resource/edit'),

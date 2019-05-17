@@ -72,5 +72,4 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 */
 		http.httpBasic();
 	}
-
 }

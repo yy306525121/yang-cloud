@@ -14,6 +14,5 @@ public class YangRegistryApplication {
 		//		.run(args);
 		new SpringApplication(YangRegistryApplication.class).run(args);
 	}
-
 }
 

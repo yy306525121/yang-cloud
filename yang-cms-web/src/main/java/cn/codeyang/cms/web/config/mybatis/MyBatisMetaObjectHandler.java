@@ -1,7 +1,7 @@
 package cn.codeyang.cms.web.config.mybatis;
 
 import cn.codeyang.auth.api.entity.User;
-import cn.codeyang.common.util.SecurityUtils;
+import cn.codeyang.common.utils.SecurityUtils;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;

@@ -7,7 +7,19 @@ import request from '@/utils/request'
 export function uploadFile(formData) {
   console.log(formData)
   return request({
-    url: '/cms/api/upload',
+    url: '/cms/api/upload/simpleUpload',
+    method: 'post',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data: formData
+  })
+}
+
+export function blockUpload(formData) {
+  console.log(formData)
+  return request({
+    url: '/cms/api/upload/blockUpload',
     method: 'post',
     headers: {
       'Content-Type': 'multipart/form-data'

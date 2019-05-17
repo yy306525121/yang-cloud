@@ -1,4 +1,4 @@
-package cn.codeyang.common.util;
+package cn.codeyang.common.utils;
 
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;

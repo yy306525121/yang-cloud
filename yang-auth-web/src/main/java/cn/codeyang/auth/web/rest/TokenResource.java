@@ -1,6 +1,6 @@
 package cn.codeyang.auth.web.rest;
 
-import cn.codeyang.common.util.SecurityUtils;
+import cn.codeyang.common.utils.SecurityUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

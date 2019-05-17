@@ -19,7 +19,7 @@ management:
         include: '*'  # 启用所有的监控端点， 默认是全部关闭的
 logging:
   level:
-    root: debug
+    root: info
 eureka:
   client:
     service-url:
@@ -34,4 +34,4 @@ security:
     resource:
       user-info-uri: http://localhost:8888/api/user/info
 file:
-  upload-folder: /Users/yangzhongyang/Documents/upload
+  upload-folder: /Users/akafra/Documents/upload
