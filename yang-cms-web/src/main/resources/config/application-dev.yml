@@ -34,4 +34,4 @@ security:
     resource:
       user-info-uri: http://localhost:8888/api/user/info
 file:
-  upload-folder: /Users/akafra/Documents/upload
+  upload-folder: /Users/yangzhongyang/Documents/upload

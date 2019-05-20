@@ -11,4 +11,5 @@ public interface UserService extends IService<User>, UserDetailsService {
 	User registerUser(User user) throws Exception;
 
 	User activateRegistration(String key);
+
 }

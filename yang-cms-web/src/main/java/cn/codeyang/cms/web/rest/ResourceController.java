@@ -2,6 +2,7 @@ package cn.codeyang.cms.web.rest;
 
 import cn.codeyang.cms.api.entity.Resource;
 import cn.codeyang.cms.api.service.ResourceService;
+import cn.codeyang.common.annotation.Inject;
 import cn.codeyang.common.http.utils.HttpResult;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -28,6 +29,7 @@ public class ResourceController {
 
 	@PostMapping("/list")
 	@ApiOperation(value = "查询所有资源")
+	@Inject
 	public ResponseEntity<IPage<Resource>> getAll(Page<Resource> pageCondition) {
 		IPage<Resource> pageResult = resourceService.query()
 				.orderByDesc("create_time")

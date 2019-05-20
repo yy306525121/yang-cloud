@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-upload :drag="true" class="upload-demo" action="" :http-request="upload">
+    <el-upload :drag="true" class="upload-demo" action="" :http-request="upload" :on-change="onFileChange">
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
       <div class="el-upload__tip" slot="tip">只能上传jpg/png文件, 且不超过500kb</div>
@@ -11,12 +11,12 @@
 
 <script>
   import {blockUpload} from '@/api/upload'
-  import {getMd5} from '@/utils/md5'
+  import {getMd5, getMD52} from '@/utils/md5'
 
   export default {
     name: "resourceEdit",
     data() {
-      return{
+      return {
         currentChunk: 0,
         time: new Date().getTime(),
         progress: 0
@@ -29,14 +29,19 @@
       fetchParam() {
         // console.log(this.$route.params.id)
       },
-      upload(resource){
+      onFileChange(file, fileList) {
+        console.log(file.raw);
+        let md5 = getMD52(file.raw);
+        console.log("md5: " + md5);
+      },
+      upload(resource) {
         // uploadFile(resource).then(response => {
         //   console.log(response)
         // })
-        console.log(resource.file);
-        // let md5 = getMd5(resource.file);
+        console.log(resource.file.raw);
+        let md5 = getMd5(resource.file.raw);
         let formData = new FormData();
-        let blockSize = 1024*1000;
+        let blockSize = 1024 * 1000;
         let blockNum = Math.ceil(resource.file.size / blockSize);
         let nextSize = Math.min((this.currentChunk + 1) * blockSize, resource.file.size);
         let fileData = resource.file.slice(this.currentChunk * blockSize, nextSize);
@@ -52,7 +57,7 @@
 
         blockUpload(formData).then(response => {
 
-          this.progress = ((this.currentChunk + 1) * 100)/ blockNum;
+          this.progress = ((this.currentChunk + 1) * 100) / blockNum;
           console.log(response);
           if (resource.file.size <= nextSize) {
             this.$message({

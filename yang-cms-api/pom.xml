@@ -24,6 +24,10 @@
             <artifactId>yang-common</artifactId>
         </dependency>
         <dependency>
+            <groupId>cn.codeyang</groupId>
+            <artifactId>yang-auth-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>

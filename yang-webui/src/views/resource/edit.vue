@@ -24,6 +24,7 @@
         // uploadFile(resource).then(response => {
         //   console.log(response)
         // })
+
         let formData = new FormData();
         formData.append('file', resource.file);
 

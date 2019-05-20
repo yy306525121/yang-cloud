@@ -1,7 +1,6 @@
 package cn.codeyang.common.utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static cn.codeyang.common.utils.FileUtils.generateFileName;
 
@@ -34,7 +33,7 @@ public class UploadUtils {
 	 * 用来存储分块上传信息
 	 * key为文件唯一标识， 由前端发送， 这里采用md5
 	 */
-	private static Map<String, Value> chunkMap = new HashMap<>();
+	private static ConcurrentHashMap<String, Value> chunkMap = new ConcurrentHashMap<>();
 
 	/**
 	 * 判断文件所有分块是否已上传完毕
