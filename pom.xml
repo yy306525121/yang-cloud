@@ -67,20 +67,11 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>3.0.7.1</version>
-            </dependency>
-            <dependency>
                 <groupId>cn.codeyang</groupId>
                 <artifactId>yang-common</artifactId>
                 <version>${yang-common.version}</version>
             </dependency>
-            <dependency>
-                <groupId>cn.codeyang</groupId>
-                <artifactId>yang-framework</artifactId>
-                <version>${yang-framework.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>cn.codeyang</groupId>
                 <artifactId>yang-auth-api</artifactId>
@@ -158,6 +149,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -1,6 +1,6 @@
 package cn.codeyang.auth.aop.logging;
 
-import cn.codeyang.framework.config.YangConstants;
+import cn.codeyang.common.constant.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -44,7 +44,7 @@ public class LoggingAspect {
 
 	@AfterThrowing(pointcut = "applicationPackagePointcut() && springBeanPointcut()", throwing = "e")
 	public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-		if (env.acceptsProfiles(YangConstants.SPRING_PROFILE_DEVELOPMENT)) {
+		if (env.acceptsProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)) {
 			log.error("Exception in {}.{}() with cause = \'{}\' and exception = \'{}\'",
 					joinPoint.getSignature().getDeclaringTypeName(),
 					joinPoint.getSignature().getName(),

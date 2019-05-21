@@ -29,6 +29,11 @@ spring:
     port: 25
     username: akademos_yang@163.com
     password: jazr932832
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: true
+
 management:
   endpoints:
     web:
@@ -36,7 +41,7 @@ management:
         include: '*'  # 启用所有的监控端点， 默认是全部关闭的
 logging:
   level:
-    root: info
+    root: debug
 eureka:
   client:
     service-url:

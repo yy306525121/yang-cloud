@@ -26,10 +26,6 @@
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.codeyang</groupId>
-            <artifactId>yang-common</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.sentry</groupId>
             <artifactId>sentry-spring</artifactId>
         </dependency>

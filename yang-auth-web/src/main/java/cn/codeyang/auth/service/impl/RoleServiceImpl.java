@@ -1,23 +1,35 @@
 package cn.codeyang.auth.service.impl;
 
 import cn.codeyang.auth.api.entity.Role;
+import cn.codeyang.auth.api.entity.query.RoleQuery;
 import cn.codeyang.auth.api.service.RoleService;
-import cn.codeyang.auth.mapper.RoleMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import cn.codeyang.auth.repositories.RoleRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author yangzhongyang
  */
 @Service
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
+public class RoleServiceImpl implements RoleService {
 	@Autowired
-	private RoleMapper roleMapper;
+	private RoleRepository roleRepository;
+
 	@Override
-	public List<Role> selectByUserId(Long userId) {
-		return roleMapper.findByUserId(userId);
+	public Page<Role> findByCondition(Integer page, Integer size, final RoleQuery roleQuery) {
+		Role role = new Role();
+
+		role.setName("ROLE");
+		ExampleMatcher matcher = ExampleMatcher.matching();
+		if (StringUtils.isNotEmpty(roleQuery.getName())) {
+			matcher.withMatcher("name", ExampleMatcher.GenericPropertyMatchers.startsWith());
+		}
+
+		Example<Role> example = Example.of(role, matcher);
+
+		Pageable pageable = PageRequest.of(page, size);
+		return roleRepository.findAll(example, pageable);
 	}
 }

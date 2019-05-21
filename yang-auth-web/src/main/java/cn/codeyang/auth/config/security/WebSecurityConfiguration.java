@@ -1,6 +1,6 @@
 package cn.codeyang.auth.config.security;
 
-import cn.codeyang.framework.config.YangProperties;
+import cn.codeyang.common.properties.YangProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

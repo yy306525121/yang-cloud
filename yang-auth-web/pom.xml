@@ -40,11 +40,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
@@ -117,12 +112,6 @@
             <groupId>io.sentry</groupId>
             <artifactId>sentry-spring</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>cn.codeyang</groupId>
-            <artifactId>yang-framework</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>

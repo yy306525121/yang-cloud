@@ -34,12 +34,5 @@ public class AccountResource {
 		//mailService.sendActivationEmail(newUser);
 	}
 
-	@PostMapping("/activate")
-	public void activateAccount(String key) throws Exception {
-		User user = userService.activateRegistration(key);
-		if (user == null) {
-			throw new Exception("激活码错误");
-		}
-	}
 
 }

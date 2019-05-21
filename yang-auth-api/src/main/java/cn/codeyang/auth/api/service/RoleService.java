@@ -1,13 +1,12 @@
 package cn.codeyang.auth.api.service;
 
 import cn.codeyang.auth.api.entity.Role;
-import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.List;
+import cn.codeyang.auth.api.entity.query.RoleQuery;
+import org.springframework.data.domain.Page;
 
 /**
  * @author yangzhongyang
  */
-public interface RoleService extends IService<Role> {
-	List<Role> selectByUserId(Long userId);
+public interface RoleService {
+	Page<Role> findByCondition(Integer page, Integer size, RoleQuery roleQuery);
 }

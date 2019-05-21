@@ -1,19 +1,22 @@
 package cn.codeyang.auth.api.entity;
 
-import cn.codeyang.auth.api.entity.enums.ActivatedStatus;
-import cn.codeyang.common.entity.base.BaseEntity;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import cn.codeyang.common.constant.Constants;
+import cn.codeyang.common.domain.base.AbstractAuditingEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.time.Instant;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,27 +25,49 @@ import java.util.Set;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("t_user")
 @ToString
-public class User extends BaseEntity<User> implements UserDetails {
+@Entity
+@Table(name = "t_user")
+public class User extends AbstractAuditingEntity implements UserDetails {
+
+	private static final long serialVersionUID = -3923914335814749338L;
+
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Long id;
+
 	/**
 	 * 用户名
 	 */
+	@NotNull
+	@Pattern(regexp = Constants.USERNAME_REGEX)
+	@Size(min = 1, max = 50)
+	@Column(length = 50, unique = true, nullable = false)
 	private String username;
 	/**
 	 * 密码
 	 */
 	@JsonIgnore
+	@NotNull
+	@Size(min = 60, max = 60)
+	@Column(length = 60, nullable = false)
 	private String password;
 
 	/**
 	 * 昵称
 	 */
+	@Size(max = 50)
+	@Column(length = 50)
 	private String nickname;
 
 	@Email
+	@Size(min = 5, max = 254)
+	@Column(unique = true)
 	private String email;
 
+	@Size(max = 256)
+	@Column(length = 256)
 	private String avatar;
 
 	/**
@@ -50,29 +75,54 @@ public class User extends BaseEntity<User> implements UserDetails {
 	 * 1:是
 	 * 2:否
 	 */
-	private ActivatedStatus activated;
+	@NotNull
+	@Column(nullable = false)
+	private Boolean activated;
 	/**
 	 * 用户语言
 	 */
+	@Size(min = 2, max = 6)
+	@Column(name = "lang_key", length = 6)
 	private String langKey;
 	/**
 	 * 激活码
 	 */
+	@Size(max = 20)
+	@Column(name = "activation_key", length = 20)
+	@JsonIgnore
 	private String activationKey;
 	/**
 	 * 重置码
 	 */
+	@Size(max = 20)
+	@Column(name = "reset_key", length = 20)
+	@JsonIgnore
 	private String resetKey;
 
 	/**
 	 * 重置时间
 	 */
-	private Date resetTime;
+	@Column(name = "reset_date")
+	private Instant resetDate = null;
 
-	@TableField(exist = false)
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+			name = "t_user_authority",
+			joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+			inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")}
+	)
+	@BatchSize(size = 20)
 	private Set<Authority> authorities = new HashSet<>();
 
-	@TableField(exist = false)
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+			name = "t_user_role",
+			joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+			inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+	)
+	@BatchSize(size = 20)
 	private Set<Role> roles = new HashSet<>();
 
 	@Override
@@ -99,4 +149,6 @@ public class User extends BaseEntity<User> implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+
 }

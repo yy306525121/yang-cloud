@@ -2,7 +2,7 @@ package cn.codeyang.auth.service.impl;
 
 import cn.codeyang.auth.api.entity.User;
 import cn.codeyang.auth.api.service.MailService;
-import cn.codeyang.framework.config.YangProperties;
+import cn.codeyang.common.properties.YangProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
